@@ -1,0 +1,126 @@
+\documentclass[a4paper,12pt]{article}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% PACKAGES
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[main=greek, english]{babel}
+
+\usepackage{amsmath}
+
+% Change format of sections
+\usepackage{titlesec}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% SETTINGS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Make a macro for changing to english
+\newcommand{\english}[1]{\foreignlanguage{english}{{#1}}}
+
+% Configure look of sections
+\titleformat{\section}
+{\normalfont\Large\bfseries}{Άσκηση \thesection}{0.5em}{}
+
+\titleformat{\subsection}
+{\normalfont\Large\bfseries}{\arabic{subsection}}{0.5em}{}
+
+\title{1ή Σειρά Ασκήσεων}
+\author{Λεωνίδας Αβδελάς}
+\date{\today}
+
+
+
+\begin{document}
+
+\maketitle
+
+\section{}
+
+\subsection{}
+Η εντροπία υπολογίζεται ως:
+\begin{align*}
+     H(x) & = - \frac{1}{8} \log{\frac{1}{8}} - \frac{1}{2} \log{\frac{1}{2}} - \frac{1}{8} \log{\frac{1}{8}}  - \frac{1}{24} \log{\frac{1}{24}} \\
+          & - \frac{1}{24} \log{\frac{1}{24}} - \frac{1}{24} \log{\frac{1}{24}} - \frac{1}{8} \log{\frac{1}{8}}                                  \\
+          & = 2.20\;\text{\english{bits}}
+\end{align*}
+
+\subsection{}
+Για να υπολογίσουμε την τυχαία μεταβλητή $Y=X^3$, πρέπει να προσθέσουμε όλες τις τιμές του $x$ ώστε
+για το $g(x)=y$ να ισχύει $p_Y(y) = \sum_{x | g(x)=y} p_X(x)$.
+
+Έτσι:
+\begin{align*}
+      & p_Y(-27) = p_X(-3) = \frac{1}{8} \\
+      & p_Y(-1) = p_X(-1) = \frac{1}{2}  \\
+      & p_Y(0) = p_X(0) = \frac{1}{8}    \\
+      & p_Y(1) = p_X(1) = \frac{1}{24}   \\
+      & p_Y(8) = p_X(2) = \frac{1}{24}   \\
+      & p_Y(27) = p_X(3) = \frac{1}{24}  \\
+      & p_Y(64) = p_X(4) = \frac{1}{8}
+\end{align*}
+
+Αφού οι πιθανότητες δεν αλλάζουν, έχουμε ότι $H(y) = H(x) = 2.20$ \english{bits}.
+
+\subsection{}
+
+Αντίστοιχα υπολογίζουμε την τυχαία μεταβλητή $Z$, με αντίστοιχο τρόπο με πριν:
+\begin{align*}
+      & p_Z(81) = p_X(-3) + p_X(3) = \frac{1}{8} + \frac{1}{24} = \frac{4}{24} = \frac{1}{6} \\
+      & p_Z(1) = p_X(-1) + p_X(1) = \frac{1}{2} + \frac{1}{24} = \frac{13}{24}               \\
+      & p_Z(0) = p_X(0) = \frac{1}{8}                                                        \\
+      & p_Z(16) = p_X(2) = \frac{1}{24}                                                      \\
+      & p_Z(64) = p_X(4) = \frac{1}{8}
+\end{align*}
+
+Άρα η εντροπία είναι:
+\begin{align*}
+     H(z) & = - \frac{1}{6} \log{\frac{1}{6}} - \frac{13}{24} \log{\frac{13}{24}} - \frac{1}{8} \log{\frac{1}{8}} - \frac{1}{24} \log{\frac{1}{24}} - \frac{1}{8} \log{\frac{1}{8}} \\
+          & = 1.85\;\text{\english{bits}}
+\end{align*}
+
+\section{}
+
+\subsection{}
+Μπορούμε να το υπολογίσουμε εύκολα κάνοντας χρήση των ιδιοτήτων της κοινής εντροπίας.
+\begin{align*}
+     H(X, Y) = & - 0.2 \log{0.2} - 0  - 0.15 \log{0.15} - 0.2 \log{0.2} - 0.05 \log{0.05} \\
+               & - 0.2 \log{0.2} - 0.15 \log{0.15} - 0.01 \log{0.01} - 0.04 \log{0.04}    \\
+     =         & 2.68 \;\text{\english{bits}}
+\end{align*}
+
+\subsection{}
+
+Θα βρούμε τις περιθωριακές τιμές του $X$ και του $Y$ και μετά θα υπολογίσουμε την εντροπία τους.
+\begin{itemize}
+     \item Για το $X$ είναι $\{0.35, 0.45, 0.2\}$
+     \item Για το $Y$ $\{0.55, 0.06, 0.39\}$.
+\end{itemize}
+Έτσι οι εντροπίες είναι $H(X) = 1.51$ \english{bits} και $H(Y) = 1.24$ \english{bits}.
+
+\subsection{}
+
+Από τον κανόνα της αλυσίδας έχουμε ότι:
+\begin{itemize}
+     \item $H(X, Y) = H(X) + H(Y|X)$, άρα $H(Y|X) = H(X,Y) - H(X)$
+     \item $H(X, Y) = H(Y) + H(X|Y)$, άρα $H(X|Y) = H(X,Y) - H(Y)$
+\end{itemize}
+
+Έτσι $H(X|Y) = 2.68 - 1.24 = 1.44$ και $H(Y|X) = 2.68 - 1.51 = 1.17$.
+
+\subsection{}
+
+Έχουμε ότι:
+\begin{align*}
+     H(X | Y = 1) & = - 0.2\log{0.2} - 0.2\log{0.2} - 0.15\log{0.15} = 1.33 \;\text{\english{bits}}     \\
+     H(X | Y = 2) & = 0 - 0.05\log{0.05} - 0.01\log{0.01} = 0.28 \;\text{\english{bits}}                \\
+     H(X | Y = 3) & = - 0.15\log{0.15} - 0.2 \log{0.2} - 0.04 \log{0.04} = 1.06 \;\text{\english{bits}}
+\end{align*}
+
+\subsection{}
+
+Αφού γνωρίζουμε και τους δύο όρους, έχουμε $H(Y) - H(Y|X) = 1.24 - 1.17 = 0.07$.
+
+\subsection{}
+
+\subsection{}
+\end{document}
